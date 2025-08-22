@@ -9,9 +9,9 @@ def main():
     #Initial conditions
     x0 = 0 #Zero initial displacement
     v0 = 1
-    k = 10
-    m = 0.1
-    dt = 0.005
+    k = 1
+    m = 1
+    dt = 0.1
     e0 = 0.5 * k * x0**2 + 0.5 * m * v0**2
     
     #Initialise discrete timesteps
@@ -29,11 +29,11 @@ def main():
     for i in range(len(t)-1):
         x[i+1] = x[i] + dt * v[i]
         v[i+1] = v[i] - dt * k * x[i] / m
-        e[i+1] = 0.5 * k * x[i]**2 + 0.5 * m * v[i]**2
+        e[i+1] = 0.5 * k * x[i+1]**2 + 0.5 * m * v[i+1]**2
         
     plt.plot(t, x, label="Position x(t)")
     plt.plot(t, v, label="Velocity v(t)")
-    plt.plot(t, e, label="Energy E(t)")
+    #plt.plot(t, e, label="Energy E(t)")
     plt.xlabel("Time/s")
     plt.legend() 
     plt.show()
